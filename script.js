@@ -64,20 +64,3 @@ function handlerForNumber () {
 }
 
 number.addEventListener("input", handlerForNumber);
-
-
-// function test() {
-// 	if (diagramValue < 20) {
-// 		interest.style.height = `${diagramValue * interestObj.int1}px`;
-// 	} else if (diagramValue >= 20 && diagramValue < 50) {
-// 		interest.style.height = `${diagramValue * interestObj.int2}px`;
-// 	} else if (diagramValue >= 50 && diagramValue < 75) {
-// 		interest.style.height = `${diagramValue * interestObj.int3}px`;
-// 	} else if (diagramValue >= 75 && diagramValue <= 100) {
-// 		interest.style.height = `${diagramValue * interestObj.int4}px`;
-// 	}
-// }
-
-// function createInterest(diagramValue) {
-// 	test();
-// }
