@@ -13,45 +13,71 @@
 
 // Красный блок отображает количество комиссии. Например Значение выбора 100, комиссия будет 8%. Результирующая сумма: 108. Высота красного блока - 8px
 
+const interestObj = {
+	int1: 0.02,
+	int2: 0.04,
+	int3: 0.06,
+	int4: 0.08,
+}
 
 const range = document.querySelector('.range');
 const number = document.querySelector('.number');
-const diagram = document.querySelector('.box');
+const interest = document.querySelector('.interest');
+const volume = document.querySelector('.volume');
+
+function createInterest(diagramValue) {
+	if (diagramValue < 20) {
+		interest.style.height = `${diagramValue * interestObj.int1}px`;
+	} else if (diagramValue >= 20 && diagramValue < 50) {
+		interest.style.height = `${diagramValue * interestObj.int2}px`;
+	} else if (diagramValue >= 50 && diagramValue < 75) {
+		interest.style.height = `${diagramValue * interestObj.int3}px`;
+	} else if (diagramValue >= 75 && diagramValue <= 100) {
+		interest.style.height = `${diagramValue * interestObj.int4}px`;
+	}
+}
 
 function diagramInterestRange() {
-	let rangeValue = range.value;
-	if (rangeValue < 20) {
-		diagram.firstElementChild.style.height = `${rangeValue * 0.02}px`;
-	} else if (rangeValue >= 20 && rangeValue < 50) {
-		diagram.firstElementChild.style.height = `${rangeValue * 0.04}px`;
-	} else if (rangeValue >= 50 && rangeValue < 75) {
-		diagram.firstElementChild.style.height = `${rangeValue * 0.06}px`;
-	} else if (rangeValue >= 75 && rangeValue <= 100) {
-		diagram.firstElementChild.style.height = `${rangeValue * 0.08}px`;
-	}
+	createInterest(range.value);
 }
 
 function diagramInterestNumber() {
-	let numberValue = number.value;
-	if (numberValue < 20) {
-		diagram.firstElementChild.style.height = `${numberValue * 0.02}px`;
-	} else if (numberValue >= 20 && numberValue < 50) {
-		diagram.firstElementChild.style.height = `${numberValue * 0.04}px`;
-	} else if (numberValue >= 50 && numberValue < 75) {
-		diagram.firstElementChild.style.height = `${numberValue * 0.06}px`;
-	} else if (numberValue >= 75 && numberValue <= 100) {
-		diagram.firstElementChild.style.height = `${numberValue * 0.08}px`;
-	}
+	createInterest(number.value);
 }
 
-range.oninput = function () {
+function volumeHeight() {
+	volume.style.height = `${range.value}px`;
+}
+
+function handlerForRange() {
 	number.value = range.value;
-	diagram.lastElementChild.style.height = `${range.value}px`;
-	diagramInterestRange()
+	volumeHeight();
+	diagramInterestRange();
 }
 
-number.oninput = function () {
+range.addEventListener("input", handlerForRange);
+
+function handlerForNumber () {
 	range.value = number.value;
-	diagram.lastElementChild.style.height = `${range.value}px`;
-	diagramInterestNumber()
+	volumeHeight();
+	diagramInterestNumber();
 }
+
+number.addEventListener("input", handlerForNumber);
+
+
+// function test() {
+// 	if (diagramValue < 20) {
+// 		interest.style.height = `${diagramValue * interestObj.int1}px`;
+// 	} else if (diagramValue >= 20 && diagramValue < 50) {
+// 		interest.style.height = `${diagramValue * interestObj.int2}px`;
+// 	} else if (diagramValue >= 50 && diagramValue < 75) {
+// 		interest.style.height = `${diagramValue * interestObj.int3}px`;
+// 	} else if (diagramValue >= 75 && diagramValue <= 100) {
+// 		interest.style.height = `${diagramValue * interestObj.int4}px`;
+// 	}
+// }
+
+// function createInterest(diagramValue) {
+// 	test();
+// }
